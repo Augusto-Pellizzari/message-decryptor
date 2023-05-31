@@ -4,20 +4,26 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MessageDecryptor {
+	
     // Method to decrypt the encrypted message
     public static String decryptMessage(String encryptedMessage) {
+    	
         // Splitting the message into words based on any non-word character
         String[] words = encryptedMessage.split("\\W+");
+        
         // Initializing a TreeMap to keep words along with their numerical values
         // TreeMap is chosen because it keeps entries sorted by keys
         Map<Integer, String> wordMap = new TreeMap<>();
 
         // Iterate through each word
         for (String word : words) {
+        	
             // Calculate the sum of all numeric characters in the word
             int sum = word.chars().filter(Character::isDigit).map(Character::getNumericValue).sum();
+            
             // Remove all numeric characters from the word
             String onlyLetters = word.replaceAll("\\d", "");
+            
             // Add the word with its numerical value to the TreeMap
             // If a key already exists in the map, the new value replaces the old one
             wordMap.put(sum, onlyLetters);
